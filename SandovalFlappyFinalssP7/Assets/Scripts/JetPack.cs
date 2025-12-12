@@ -1,30 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class JetPack : MonoBehaviour
 {
     public ParticleSystem ps;
+    private ParticleSystem.EmissionModule em;
+    public Animator anim;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
+        Rigidbody rb = GetComponent<Rigidbody>();
 
     }
 
+    void Start()
+    {
+        em = ps.emission;
+
+    }
     // Update is called once per frame
     void Update()
+
     {
+
+        bool pressed = Input.GetKey(KeyCode.Space);
         if (Input.GetKey(KeyCode.Space))
         {
-            if (!ps.isPlaying)
-                ps.Play();
+            em.enabled = true;
+            anim.SetBool("IsFirng", pressed);
         }
         else
         {
-            if (ps.isPlaying)
-                ps.Stop();
+            em.enabled = false;
+            anim.SetBool("IsFirng", false);
         }
     }
+
 }
 

@@ -7,6 +7,8 @@ public class CharacterScript : MonoBehaviour
 
     public float jetpackForce = 10f;      // Force applied when Space is held
     public float maxVerticalSpeed = 10f;  // Optional: limit upward speed
+    public Animator anim;
+    public GameObject hitbox;
 
     private Rigidbody2D rb;
 
@@ -30,4 +32,32 @@ public class CharacterScript : MonoBehaviour
             }
         }
     }
+
+
+    // Called when the player enters the hitbox
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject == hitbox)
+        {
+            anim.SetBool("walk", true);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject == hitbox)
+        {
+            anim.SetBool("walk", true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject == hitbox)
+        {
+            anim.SetBool("walk", false);
+        }
+    }
 }
+
+

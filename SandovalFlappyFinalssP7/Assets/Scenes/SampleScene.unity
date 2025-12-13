@@ -5247,7 +5247,7 @@ PrefabInstance:
       objectReference: {fileID: 412887575}
     - target: {fileID: 6811682901627648431, guid: 36c72f4cef2ea434daf0f25af918ea23, type: 3}
       propertyPath: jetpackForce
-      value: 59.9
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6811682901627648431, guid: 36c72f4cef2ea434daf0f25af918ea23, type: 3}
       propertyPath: maxVerticalSpeed

@@ -9,7 +9,8 @@ public class CharacterScript : MonoBehaviour
     public float maxVerticalSpeed = 10f;  // Optional: limit upward speed
     public Animator anim;
     public GameObject hitbox;
-
+    public GameObject spike;
+    private bool isDead = false;
     private Rigidbody2D rb;
 
     void Start()
@@ -19,18 +20,21 @@ public class CharacterScript : MonoBehaviour
 
     void Update()
     {
-        // Hold space to activate jetpack
-        if (Input.GetKey(KeyCode.Space))
+        if (isDead == false)
         {
-            // Apply upward force
-            rb.AddForce(Vector2.up * jetpackForce, ForceMode2D.Force);
-
-            // Optional: clamp vertical speed
-            if (rb.velocity.y > maxVerticalSpeed)
+            if (Input.GetKey(KeyCode.Space))
             {
-                rb.velocity = new Vector2(rb.velocity.x, maxVerticalSpeed);
+                // Apply upward force
+                rb.AddForce(Vector2.up * jetpackForce, ForceMode2D.Force);
+
+                // Optional: clamp vertical speed
+                if (rb.velocity.y > maxVerticalSpeed)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, maxVerticalSpeed);
+                }
             }
         }
+       
     }
 
 
@@ -40,6 +44,12 @@ public class CharacterScript : MonoBehaviour
         if (other.gameObject == hitbox)
         {
             anim.SetBool("walk", true);
+        }
+        else 
+        {
+            anim.SetBool("Death", true);
+            GameControl.instance.BirdDied();
+            isDead = true;
         }
     }
 

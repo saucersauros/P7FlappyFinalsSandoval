@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Backround
+    uniqueID: 2215355275
+    locked: 0
+  - name: MidGround
+    uniqueID: 3127544913
+    locked: 0
+  - name: FontBackround
+    uniqueID: 3477550177
+    locked: 0
+  - name: FRONTFRONT
+    uniqueID: 3519266117
+    locked: 0
+  - name: FRONTFRONTFRON
+    uniqueID: 4115421351
+    locked: 0

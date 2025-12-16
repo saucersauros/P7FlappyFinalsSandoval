@@ -4,58 +4,44 @@ using UnityEngine;
 
 public class Enemy2 : MonoBehaviour
 {
-    [Header("Movement")]
     public float speed = 5f;
     public float amplitude = 1f;
     public float frequency = 2f;
+    public float deathDelay = 0.5f;
+    public Animator animator;
+    public GameObject hitEffectPrefab;
 
-    private float startY;
-
-    [Header("Death Settings")]
-    public Animator animator;          // Assign enemy's animator
-    public float deathDelay = 0.5f;    // Time for death animation
-
+    private Rigidbody2D rb;
+    private Vector2 startPos;
     private bool isDead = false;
-    private float xStart;
 
     void Start()
     {
-        startY = transform.position.y;
-        xStart = transform.position.x;
+        rb = GetComponent<Rigidbody2D>();
+        startPos = rb.position;
+        animator = GetComponent<Animator>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (!isDead)
-        {
-            // Move left
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
+        if (isDead) return;
 
-            // Sinusoidal Y movement
-            float newY = startY + Mathf.Sin(Time.time * frequency) * amplitude;
-            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+        float newY = startPos.y + Mathf.Sin(Time.time * frequency) * amplitude;
+        Vector2 newPos = new Vector2(rb.position.x - speed * Time.fixedDeltaTime, newY);
+        rb.MovePosition(newPos);
 
-            // Destroy if offscreen
-            if (transform.position.x < -20f)
-            {
-                Destroy(gameObject);
-            }
-        }
+        if (rb.position.x < -20f)
+            Destroy(gameObject);
     }
 
-    // Call this when hit by a projectile
     public void Die()
     {
         if (isDead) return;
         isDead = true;
 
-        // Stop movement and play death animation
         if (animator != null)
-        {
             animator.SetTrigger("Die");
-        }
 
-        // Destroy after delay
         StartCoroutine(DeathRoutine());
     }
 
@@ -63,5 +49,17 @@ public class Enemy2 : MonoBehaviour
     {
         yield return new WaitForSeconds(deathDelay);
         Destroy(gameObject);
+    }
+
+    public void PlayHitEffect()
+    {
+        if (hitEffectPrefab != null)
+        {
+            GameObject effect = Instantiate(hitEffectPrefab, rb.position, Quaternion.identity);
+            Animator effectAnim = effect.GetComponent<Animator>();
+            if (effectAnim != null)
+                effectAnim.SetTrigger("Hit");
+            Destroy(effect, 0.5f);
+        }
     }
 }

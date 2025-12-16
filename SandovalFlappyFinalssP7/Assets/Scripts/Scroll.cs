@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Scroll : MonoBehaviour
 {
     private Rigidbody2D rb;
     // Start is called before the first frame update
@@ -19,5 +19,6 @@ public class NewBehaviourScript : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
         }
+          
     }
 }

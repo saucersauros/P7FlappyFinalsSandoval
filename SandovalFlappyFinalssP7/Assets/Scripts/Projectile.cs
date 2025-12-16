@@ -8,30 +8,36 @@ public class Projectile : MonoBehaviour
     public float lifeTime = 5f;
     public int damage = 1;
 
+    private Vector2 moveDirection;
+
+    public void SetDirection(Vector2 direction)
+    {
+        moveDirection = direction.normalized;
+    }
+
     void Start()
     {
-        // Auto destroy after lifeTime
         Destroy(gameObject, lifeTime);
     }
 
     void Update()
     {
-        // Move forward (right)
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        transform.Translate(moveDirection * speed * Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // One-shot enemies
-        EnemyOneShot oneShot = other.GetComponent<EnemyOneShot>();
-        if (oneShot != null)
+        // Check if the enemy has EnemyMovement script
+        Enemy2 enemyMovement = other.GetComponent<Enemy2>();
+        if (enemyMovement != null)
         {
-            oneShot.Die();
             Destroy(gameObject);
+            enemyMovement.Die();
+            enemyMovement.PlayHitEffect(); 
             return;
         }
 
-        // Health enemy
+        // Optional: still support other health-based enemies
         EnemyHealth healthEnemy = other.GetComponent<EnemyHealth>();
         if (healthEnemy != null)
         {

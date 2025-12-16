@@ -145,15 +145,15 @@ ScriptedImporter:
   spriteSheetImportData:
   - name: Character_0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
-      y: 48
-      width: 354
-      height: 266
+      x: 4
+      y: 729
+      width: 432
+      height: 327
     spriteID: db2537de5712c6e42b142ccbf6202c66
     spriteBone: []
     spriteOutline: []
@@ -165,16 +165,36 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Character_1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 512
-      y: 2
-      width: 290
-      height: 299
+      x: 1520
+      y: 629
+      width: 305
+      height: 393
     spriteID: b54f9778b0ca1874b9107c03fdc56207
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: Character_2
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 686
+      y: 4
+      width: 430
+      height: 316
+    spriteID: 376f7a71ceccf5948b619d97a08396b0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -200,10 +220,10 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 523
-        y: 539
-        width: 788
-        height: 299
+        x: 68
+        y: 240
+        width: 1821
+        height: 1052
       spriteId: bc461f4cd7982ad45bbc8c1b393c55ae
     linkedCells: []
     parentIndex: -1
@@ -284,4 +304,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 2067, y: 1292}
-  previousTextureSize: {x: 1024, y: 512}
+  previousTextureSize: {x: 2048, y: 2048}

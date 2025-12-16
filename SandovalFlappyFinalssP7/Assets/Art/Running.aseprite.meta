@@ -145,15 +145,15 @@ ScriptedImporter:
   spriteSheetImportData:
   - name: Running_0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 11
-      y: 836
-      width: 424
-      height: 310
+      x: 36
+      y: 847
+      width: 437
+      height: 339
     spriteID: 22ce89c2401d1a54bb172fe9ca6d49dd
     spriteBone: []
     spriteOutline: []
@@ -165,15 +165,15 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Running_1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1278
-      y: 850
-      width: 392
-      height: 321
+      x: 1304
+      y: 740
+      width: 439
+      height: 374
     spriteID: fde52f2fa0c7aa5458515df492be475e
     spriteBone: []
     spriteOutline: []
@@ -185,15 +185,15 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Running_2
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
-      y: 11
-      width: 411
-      height: 320
+      x: 4
+      y: 4
+      width: 443
+      height: 375
     spriteID: 780e0bff7a47fa84daf71ce1ff0be37f
     spriteBone: []
     spriteOutline: []
@@ -205,15 +205,15 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Running_3
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1217
-      y: 50
-      width: 382
-      height: 302
+      x: 1236
+      y: 55
+      width: 453
+      height: 362
     spriteID: 46f52091d00d82446900b3491ecb2e81
     spriteBone: []
     spriteOutline: []
@@ -242,8 +242,8 @@ ScriptedImporter:
       cellRect:
         x: 149
         y: 110
-        width: 1642
-        height: 1136
+        width: 1739
+        height: 1182
       spriteId: 73cf861b59f24b042baa625503293167
     linkedCells: []
     parentIndex: -1

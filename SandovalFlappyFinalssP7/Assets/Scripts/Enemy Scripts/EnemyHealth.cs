@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class EnemyHealth  : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     [Header("Movement")]
     public float moveUpDistance = 3f;       // How far it pops up
@@ -18,6 +17,9 @@ public class EnemyHealth  : MonoBehaviour
     [Header("Timing")]
     public float minWait = 10f;             // Minimum time to reappear
     public float maxWait = 60f;             // Maximum time to reappear
+
+    [Header("Projectile Prefab (optional)")]
+    public GameObject projectilePrefab;     // Reference to projectile if needed elsewhere
 
     private Vector3 startPos;
     private Vector3 upPos;
@@ -35,22 +37,35 @@ public class EnemyHealth  : MonoBehaviour
 
     void Update()
     {
-        // Smoothly move up or down
         if (isMoving)
         {
             Vector3 target = isUp ? upPos : startPos;
             transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
 
-            // Stop moving when reached target
             if (Vector3.Distance(transform.position, target) < 0.01f)
                 isMoving = false;
         }
     }
 
-    // Called by projectile
+    // Only takes damage from objects with a Projectile script
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!isUp) return; // Only take damage when up
+
+        // Check for Projectile component
+        Projectile proj = other.GetComponent<Projectile>();
+        if (proj != null)
+        {
+            TakeDamage(proj.damage);
+            animator.SetTrigger("hurt");
+
+            // Destroy projectile after hitting
+            Destroy(other.gameObject);
+        }
+    }
+
     public void TakeDamage(int damage)
     {
-        if (!isUp) return; // only take damage when up
         currentHealth -= damage;
 
         if (animator != null)
@@ -58,10 +73,10 @@ public class EnemyHealth  : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            // Move back down
             isUp = false;
             isMoving = true;
             currentHealth = maxHealth; // reset for next popup
+            animator.SetTrigger("HURT");
         }
     }
 
@@ -69,26 +84,20 @@ public class EnemyHealth  : MonoBehaviour
     {
         while (true)
         {
-            // Wait a random time between min/max
             float waitTime = Random.Range(minWait, maxWait);
             yield return new WaitForSeconds(waitTime);
 
-            // Pop up
             isUp = true;
             isMoving = true;
 
-            // Play search animation
-            if (animator != null)
-                animator.SetTrigger("Search");
 
             // Wait until fully up
             while (Vector3.Distance(transform.position, upPos) > 0.01f)
                 yield return null;
 
-            // Wait until health reaches 0 (projectile hits)
+            // Wait until health reaches 0 (hit by projectile)
             while (isUp)
                 yield return null;
         }
     }
 }
-

@@ -5819,7 +5819,7 @@ PrefabInstance:
       objectReference: {fileID: 592150787}
     - target: {fileID: 6811682901627648431, guid: 36c72f4cef2ea434daf0f25af918ea23, type: 3}
       propertyPath: jetpackForce
-      value: 35
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6811682901627648431, guid: 36c72f4cef2ea434daf0f25af918ea23, type: 3}
       propertyPath: shootOffset.x
@@ -5897,8 +5897,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7278126313491573239, guid: f02638ea6b354c74caba2ecd483a14ec, type: 3}
+      propertyPath: maxY
+      value: -5.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278126313491573239, guid: f02638ea6b354c74caba2ecd483a14ec, type: 3}
+      propertyPath: minY
+      value: -3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278126313491573239, guid: f02638ea6b354c74caba2ecd483a14ec, type: 3}
       propertyPath: spawnDelay
-      value: 7.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7278126313491573239, guid: f02638ea6b354c74caba2ecd483a14ec, type: 3}
       propertyPath: enemyPrefab
@@ -6399,8 +6407,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7278126313491573239, guid: f02638ea6b354c74caba2ecd483a14ec, type: 3}
+      propertyPath: maxY
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278126313491573239, guid: f02638ea6b354c74caba2ecd483a14ec, type: 3}
+      propertyPath: minY
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278126313491573239, guid: f02638ea6b354c74caba2ecd483a14ec, type: 3}
       propertyPath: spawnDelay
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9200674609938605068, guid: f02638ea6b354c74caba2ecd483a14ec, type: 3}
       propertyPath: m_LocalPosition.x

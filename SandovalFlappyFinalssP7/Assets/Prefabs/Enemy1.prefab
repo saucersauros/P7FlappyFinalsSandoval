@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2025915385846587669}
   m_Layer: 0
   m_Name: Enemy1
-  m_TagString: Untagged
+  m_TagString: Deadly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,6 +196,6 @@ MonoBehaviour:
   speed: 5
   amplitude: 0
   frequency: 0
-  deathDelay: 0
+  deathDelay: 0.4
   animator: {fileID: 0}
   hitEffectPrefab: {fileID: 0}

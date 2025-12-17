@@ -9,6 +9,9 @@ public class PillarSpawner : MonoBehaviour
     public GameObject redPillar;     // value 2
     public GameObject purplePillar;  // value 3
 
+    [Header("Middle Prefab")]
+    public GameObject middlePrefab;  // assign your hitbox prefab here
+
     [Header("Spawn Position")]
     public float spawnX = 12f;
     public float minY = -2f;
@@ -63,22 +66,23 @@ public class PillarSpawner : MonoBehaviour
                 break;
         }
 
+        // Random vertical center for the gap
         float centerY = Random.Range(minY, maxY);
 
-        Vector3 bottomPos = new Vector3(
-            spawnX,
-            centerY - gapHeight / 2f,
-            0f
-        );
+        // Positions for top and bottom pillars
+        Vector3 bottomPos = new Vector3(spawnX, centerY - gapHeight / 2f, 0f);
+        Vector3 topPos = new Vector3(spawnX, centerY + gapHeight / 2f, 0f);
 
-        Vector3 topPos = new Vector3(
-            spawnX,
-            centerY + gapHeight / 2f,
-            0f
-        );
-
+        // Spawn top and bottom pillars
         Instantiate(bottomPrefab, bottomPos, Quaternion.identity);
         Instantiate(topPrefab, topPos, Quaternion.identity);
+
+        // Spawn **exactly one middle hitbox** at the center of the gap
+        if (middlePrefab != null)
+        {
+            Vector3 middlePos = new Vector3(spawnX, centerY, 0f); // exact center
+            Instantiate(middlePrefab, middlePos, Quaternion.identity);
+        }
     }
 
     void IncreaseDifficulty()

@@ -6,10 +6,9 @@ public class EnemyOneShot : MonoBehaviour
 {
     [Header("Movement")]
     public float speed = 5f;
-
     [Header("Death Settings")]
-    public Animator animator;         // Assign if you have a death animation
-    public float deathDelay = 0.5f;  // Time for death animation
+    public Animator animator;        
+    public float deathDelay = 0.5f;  // time of death animation 
 
     private bool isDead = false;
 
@@ -26,19 +25,15 @@ public class EnemyOneShot : MonoBehaviour
         }
     }
 
-    // Call this when hit by a projectile
+  
     public void Die()
     {
         if (isDead) return;
         isDead = true;
-
-        // Stop movement and play animation if any
         if (animator != null)
         {
             animator.SetTrigger("Die");
         }
-
-        // Destroy after delay
         StartCoroutine(DeathRoutine());
     }
 

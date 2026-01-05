@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
-{
+{ // this was pretty hard too but not hard emough to explain it
     public GameObject enemyPrefab;
 
     [Header("Spawn Range")]

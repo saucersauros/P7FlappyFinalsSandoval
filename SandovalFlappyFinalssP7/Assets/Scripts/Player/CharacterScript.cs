@@ -5,15 +5,13 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     [Header("Movement")]
-    public float jetpackForce = 10f;
-    public float maxVerticalSpeed = 10f;
+    public float jetpackForce = 10f; //FART FORCE
+    public float maxVSpeed = 10f;
     public Animator anim;
-
     [Header("Shooting")]
     public GameObject projectilePrefab;
-    public Vector2 shootOffset = new Vector2(1f, 0f); // X & Y spawn offset
-    public float shootDirection = 1f; // 1 = right, -1 = left
-
+    public Vector2 shootOffset = new Vector2(1f, 0f);
+    public float shootDirection = 1f;
     private bool isDead = false;
     private Rigidbody2D rb;
 
@@ -41,9 +39,9 @@ public class Character : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jetpackForce, ForceMode2D.Force);
 
-            if (rb.velocity.y > maxVerticalSpeed)
+            if (rb.velocity.y > maxVSpeed)
             {
-                rb.velocity = new Vector2(rb.velocity.x, maxVerticalSpeed);
+                rb.velocity = new Vector2(rb.velocity.x, maxVSpeed);
             }
         }
     }
@@ -56,28 +54,21 @@ public class Character : MonoBehaviour
             anim.SetTrigger("Shoot");
         }
     }
-
     void Shoot()
     {
         Vector2 offset = shootOffset;
         offset.x *= shootDirection;
-
         Vector2 spawnPosition = (Vector2)transform.position + offset;
-
         GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
         projectile.GetComponent<Projectile>().SetDirection(Vector2.right * shootDirection);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // POINT / HITBOX
         if (other.CompareTag("Hitbox") || other.CompareTag("Point"))
         {
             Debug.Log("Point collected!");
-            // Add scoring logic here, e.g. ScoreManager.Instance.AddScore(1);
-
         }
-        // DEADLY OBJECTS
         else if (other.CompareTag("Deadly") || other.transform.root.CompareTag("Deadly"))
         {
             Die();

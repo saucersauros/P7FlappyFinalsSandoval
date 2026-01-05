@@ -7,34 +7,27 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance;
 
     [Header("Score Display")]
-    public GameObject[] numberPrefabs; // 0-9 number prefabs
-    public Transform scoreParent;      // empty GameObject where numbers will appear
-    public float digitSpacing = 0.5f;  // spacing between digits
-
+    public GameObject[] numberPrefabs;
+    public Transform scoreParent;      
+    public float digitSpacing = 0.5f;  
     private int score = 0;
-
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
-
     public void AddScore(int amount)
     {
         score += amount;
         UpdateScoreDisplay();
     }
-
     void UpdateScoreDisplay()
     {
-        // Clear old numbers
         foreach (Transform child in scoreParent)
         {
             Destroy(child.gameObject);
         }
-
         string scoreStr = score.ToString();
-
         for (int i = 0; i < scoreStr.Length; i++)
         {
             int digit = int.Parse(scoreStr[i].ToString());
